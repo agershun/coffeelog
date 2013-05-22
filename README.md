@@ -131,17 +131,48 @@ The following three lines are equivalent:
 ## Idea 6: States
 
     -: At(A),Level(Low),BoxAt(C),BananasAt(B).
+    
+## Idea 7: Actions, Preconditions, and Effects
+
     Move(x,y) :- At(x),Level(Low) -: At(y).
     ClimbUp(location) :- At(location), BoxAt(location), Level(low) -: Level(high).              
     ClimbDown(location) :- At(location), BoxAt(location), Level(High) -: Level(Low).
     MoveBox(x,y) :- At(x), BoxAt(x), Level(Low) -: BoxAt(y), At(y).
     TakeBananas(location) :- At(location), BananasAt(location), Level(High) -: Have(Bananas).
 
+## Idea 8: Goals
+
     strategy = goal Have(Banana)
     console.log strategy.plan
     > [Move(A,B),ClimbUp(C),TakeBananas(C)]
     
+## Idea 9: Execution
+
+    make strategy
     
+## Idea 10: Bayes Probabilities
+
+    Traffic :- Accident {prob:0.01}.
+    Traffic :- President {prob:0.1}.
+    
+    console.log probability(Traffic :- Accident)
+    > 0.14
+
+
+## Idea 11: Graphs
+
+    A:-B.
+    B:-C.
+    console.log path C,A.
+    > [C,B,A]
+    
+## Idea 12: Knowledge Base
+
+## Idea 13: Environment
+
+## Conclusion
+It just idea.
+
 
    
         
