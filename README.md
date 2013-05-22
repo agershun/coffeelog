@@ -71,3 +71,37 @@ more complex:
     move White(Queen)         := console.log "White Queen's move"
     move White(figure)        := console.log "White #{figure} move"    
     move White(Pawn, number)  := console.log "White pawn No. #{number} move"    
+
+## Facts
+
+    Zebra.
+    Animal Zebra.
+    Color Zebra, White.
+    
+    
+#### Fact variables
+
+    fact1 = Color Zebra, Black.
+    
+    
+#### Fact properties
+
+    fact2 = Color Bear, Brown {comment: "Regular color of forest bear"}.
+    fact3 = Color Bear, White.
+        comment: "Regular color of polar bear"
+        prob: 0.5
+        
+    console.log "The probability of white color is #{fact3.prob}"
+    
+## Rules
+
+    Man Sokrat.
+    Mortal x :- Man x.
+    
+    console.log Mortal Sokrat
+    
+    
+    
+        
+        
+    
