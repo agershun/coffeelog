@@ -72,7 +72,7 @@ more complex:
     move White(figure)        := console.log "White #{figure} move"    
     move White(Pawn, number)  := console.log "White pawn No. #{number} move"    
 
-## Facts
+## Idea 2: Facts
 
     Zebra.
     Animal Zebra.
@@ -93,15 +93,42 @@ more complex:
         
     console.log "The probability of white color is #{fact3.prob}"
     
-## Rules
+## Idea 3: Rules
 
     Man Sokrat.
     Mortal x :- Man x.
+        
+## Idea 4: Solve
     
+The following three lines are equivalent:
+    
+    console.log(solve(Mortal(Sokrat)))
+    console.log solve(Mortal(Sokrat))
+    console.log Mortal(Sokrat)
     console.log Mortal Sokrat
+    > true
+
+    console.log Mortal(x)
+    > ["Sokrat"]
     
+    console.log solve(Mortal(x),CFL_FIRST)
+    > "Sokrat"
+
+
+## Idea 5: Heuristics
+
+    Man Sokrat {priority: 200}.
+    Man Plato {priority: 300}.
+    Mortal x :- Man x.
+   
+    console.log Mortal x
+    > ["Sokrat", "Plato"]
+   
+    console.log solve(Mortal(x),CFL_PRIORITY)
+    > ["Plato", "Sokrat"]
     
-    
+   
+   
         
         
     
