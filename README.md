@@ -1,4 +1,4 @@
-coffeelog
+CoffeeLog
 =========
 
 CoffeeLog logic programming language
