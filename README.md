@@ -128,6 +128,21 @@ The following three lines are equivalent:
     > ["Plato", "Sokrat"]
     
    
+## Idea 6: States
+
+    At(A),Level(Low),BoxAt(C),BananasAt(B).
+    Move(x,y) :- At(x),Level(Low) -: At(y).
+    ClimbUp(location) :- At(location), BoxAt(location), Level(low) -: Level(high).              
+    ClimbDown(location) :- At(location), BoxAt(location), Level(High) -: Level(Low).
+    MoveBox(x,y) :- At(x), BoxAt(x), Level(Low) -: BoxAt(y), At(y).
+    TakeBananas(location) :- At(location), BananasAt(location), Level(High) -: Have(Bananas).
+
+    strategy = goal Have(Banana)
+    console.log strategy.plan
+    > [Move(A,B),ClimbUp(C),TakeBananas(C)]
+    
+    
+
    
         
         
