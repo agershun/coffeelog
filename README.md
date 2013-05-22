@@ -130,7 +130,7 @@ The following three lines are equivalent:
    
 ## Idea 6: States
 
-    At(A),Level(Low),BoxAt(C),BananasAt(B).
+    -: At(A),Level(Low),BoxAt(C),BananasAt(B).
     Move(x,y) :- At(x),Level(Low) -: At(y).
     ClimbUp(location) :- At(location), BoxAt(location), Level(low) -: Level(high).              
     ClimbDown(location) :- At(location), BoxAt(location), Level(High) -: Level(Low).
