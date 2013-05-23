@@ -1,4 +1,5 @@
-# CoffeeLog
+# CoffeeLog = CoffeeScript+Prolog+some Haskell
+A Logic Programming Language
 
 ## Introduction
 
@@ -10,16 +11,18 @@ Now it is only proof of concept language.
 
 ## Idea 1: Function declarations
 
+### First Sample - Fibonaci numbers
+
+Here is a first easy sample. Function definition in Haskell style.
+
     fib 0 := 0
     fib 1 := 1
+    fib n when n<0 := console.error "fib(n): n should be a positive number"
     fib n := fib(n-1) + fib(n-2)
-    
-    
-### Matching by type    
 
-    fib n when n<0    := console.error "fib(n): n should be a positive number"
+### Pattern matching by type    
+
     fib string(n)     := console.error "fib(n): n should be a positive number, not string"
-    fib not number(n) := console.error "fib(n): n should be a positive number"
     fib args... := if args.length > 1 then console.error "fib(n): oly one argument allowed"
 
 #### Definition by Types:
@@ -45,7 +48,6 @@ Allowed types:
     sum3 [a,b,c]  := a+b+c
     head [x,y...] := x
     tail [x,y...] := y
-
     equalHeads [x1,y1...],[x2,y2...]  := x1 is x2
 
 ### Guards (when expressions)
@@ -55,78 +57,67 @@ Allowed types:
 
 or you can use functions for guard expressions:
 
+    myAbs 0 := 0
     myAbs x when isPositive(x) := x
     myAbs x when isNegative(x) := -x
     isPositive = (x) -> x > 0
     isNegative = (x) -> x < 0
 
-more complex:
+more complex samples:
 
+    mySum2 x,y := x+y
     mySum3 args... when args.length is 3 := args[0] + args[1] + args[2]
 
-
-### Terms
-
-    move White                := console.log "White's move"
-    move White(Queen)         := console.log "White Queen's move"
-    move White(figure)        := console.log "White #{figure} move"    
-    move White(Pawn, number)  := console.log "White pawn No. #{number} move"    
-
+    
 ## Idea 2: Facts
 
-    Zebra.
-    Animal Zebra.
-    Color Zebra, White.
-    
-    
-#### Fact variables
+You can define facts the same way Like in Prolog.
 
-    fact1 = Color Zebra, Black.
-    
+    animal(zebra).
+    color(zebra, white).
     
 #### Fact properties
 
-    fact2 = Color Bear, Brown {comment: "Regular color of forest bear"}.
-    fact3 = Color Bear, White.
+    color(bear,brown) {comment: "Regular color of forest bear"}.
+    color(bear,white).
         comment: "Regular color of polar bear"
         prob: 0.5
-        
-    console.log "The probability of white color is #{fact3.prob}"
-    
+            
 ## Idea 3: Rules
 
-    Man Sokrat.
-    Mortal x :- Man x.
+Again you can define rules like in Prolog:
+
+    man(sokrat).
+    mortal(X) :- man(X).
         
 ## Idea 4: Solve
     
 The following three lines are equivalent:
     
-    console.log(solve(Mortal(Sokrat)))
-    console.log solve(Mortal(Sokrat))
-    console.log Mortal(Sokrat)
-    console.log Mortal Sokrat
-    > true
+    console.log solve(mortal(sokrat))
 
-    console.log Mortal(x)
-    > ["Sokrat"]
+    console.log solve(mortal(X))
+    > ["sokrat"]
     
-    console.log solve(Mortal(x),CFL_FIRST)
-    > "Sokrat"
+    console.log solve(mortal(X),CFL_FIRST)
+    > "sokrat"
 
 
 ## Idea 5: Heuristics
 
-    Man Sokrat {priority: 200}.
-    Man Plato {priority: 300}.
-    Mortal x :- Man x.
+    man(sokrat) {priority: 200}.
+    man(plato) {priority: 300}.
+    mortal(X) :- man(x).
    
-    console.log Mortal x
-    > ["Sokrat", "Plato"]
+    console.log solve(mortal(X))
+    > ["sokrat", "plato"]
    
-    console.log solve(Mortal(x),CFL_PRIORITY)
-    > ["Plato", "Sokrat"]
+    console.log solve(mortal(X),CFL_PRIORITY)
+    > ["plato", "sokrat"]
     
+   
+   
+## Other future not realized ideas   
    
 ## Idea 6: States
 
