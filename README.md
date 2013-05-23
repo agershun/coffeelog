@@ -1,4 +1,5 @@
-# CoffeeLog = CoffeeScript+Prolog+some Haskell
+# CoffeeLog
+CoffeeScript+Prolog+some Haskell
 A Logic Programming Language
 
 ## Introduction
@@ -50,6 +51,11 @@ Allowed types:
     tail [x,y...] := y
     equalHeads [x1,y1...],[x2,y2...]  := x1 is x2
 
+### Any variable
+
+    mySum x,_,y,_,z = x+y-z
+    someFun [_,args...] = args.length
+
 ### Guards (when expressions)
 
     myAbs x when x >= 0 := x
@@ -67,7 +73,6 @@ more complex samples:
 
     mySum2 x,y := x+y
     mySum3 args... when args.length is 3 := args[0] + args[1] + args[2]
-
     
 ## Idea 2: Facts
 
